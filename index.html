@@ -3,61 +3,1092 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrayerEluned - ポートフォリオ</title>
+  <title>PrayerEluned - Quantum Physics & Game Development Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body { font-family: sans-serif; margin: 2em; background: #fdfdfd; color: #333; }
-    h1, h2 { color: #2c3e50; }
-    section { margin-bottom: 2em; }
-    .code { background: #eee; padding: 0.5em; border-radius: 4px; font-family: monospace; }
+    :root {
+      --primary: #667eea;
+      --secondary: #764ba2;
+      --accent: #f093fb;
+      --dark: #1a1a2e;
+      --darker: #16213e;
+      --light: #eee;
+      --text: #e5e5e5;
+      --text-secondary: #b0b3b8;
+      --green: #00ff88;
+      --orange: #ff6b35;
+      --red: #ff4757;
+      --yellow: #feca57;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.1"/><stop offset="100%" stop-color="%23667eea" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="300" fill="url(%23a)"/><circle cx="800" cy="800" r="300" fill="url(%23a)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero .description {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Research Section */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .research-card {
+      background: linear-gradient(145deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .research-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+    }
+
+    .research-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-tag {
+      background: rgba(102, 126, 234, 0.2);
+      color: var(--primary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: linear-gradient(145deg, var(--darker), rgba(22, 33, 62, 0.8));
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(102, 126, 234, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-header {
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .project-header h3 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-type {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-content {
+      padding: 2rem;
+    }
+
+    .project-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(102, 126, 234, 0.1);
+      border-radius: 10px;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Code Showcase Section */
+    .code-showcase {
+      margin: 2rem 0;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 1.5rem;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .code-showcase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .code-showcase h4 {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .code-toggle {
+      background: rgba(102, 126, 234, 0.2);
+      border: none;
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .code-toggle:hover {
+      background: rgba(102, 126, 234, 0.3);
+    }
+
+    .code-content {
+      display: none;
+      background: #0f0f23;
+      border-radius: 10px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      border-left: 4px solid var(--primary);
+    }
+
+    .code-content.active {
+      display: block;
+    }
+
+    .code-block {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #e5e5e5;
+      white-space: pre-wrap;
+      margin: 0;
+    }
+
+    .code-comment {
+      color: #6a9955;
+    }
+
+    .code-keyword {
+      color: #569cd6;
+    }
+
+    .code-string {
+      color: #ce9178;
+    }
+
+    .code-type {
+      color: #4ec9b0;
+    }
+
+    .code-attribute {
+      color: #9cdcfe;
+    }
+
+    /* Architecture Diagram */
+    .architecture-diagram {
+      margin: 2rem 0;
+      background: rgba(102, 126, 234, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .architecture-title {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .diagram-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .diagram-node {
+      background: linear-gradient(145deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      min-width: 120px;
+      text-align: center;
+      position: relative;
+    }
+
+    .diagram-arrow {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+    }
+
+    .diagram-description {
+      margin-top: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-category {
+      background: linear-gradient(145deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(102, 126, 234, 0.1);
+    }
+
+    .skill-category h3 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-item {
+      margin-bottom: 1rem;
+    }
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-level {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--primary);
+    }
+
+    .skill-bar {
+      height: 4px;
+      background: rgba(102, 126, 234, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+      transition: width 2s ease;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      background: rgba(102, 126, 234, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      background: rgba(102, 126, 234, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero {
+        text-align: center;
+        padding-top: 5rem;
+      }
+      
+      .cta-buttons {
+        justify-content: center;
+      }
+      
+      .projects-grid,
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .diagram-container {
+        flex-direction: column;
+      }
+      
+      .diagram-arrow {
+        transform: rotate(90deg);
+      }
+      
+      .code-showcase {
+        padding: 1rem;
+      }
+      
+      .code-content {
+        padding: 1rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--secondary);
+    }
   </style>
 </head>
 <body>
-  <h1>PrayerEluned - ポートフォリオ</h1>
-  
-  <section>
-    <h2>自己紹介</h2>
-    <p>量子場理論を専攻する物理系修士学生であり、<strong>量子情報</strong>の学習も進めています。ゲーム開発や動画制作にも取り組み、幅広い分野を横断してスキルを伸ばしています。</p>
-  </section>
+  <header>
+    <nav>
+      <div class="logo">PrayerEluned</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <section>
-    <h2>研究活動</h2>
-    <ul>
-      <li>テーマ：de Sitter空間におけるBunch-Davies真空とエントロピー</li>
-      <li>内容：曲がった時空における量子場、シュワルツシルト時空の表面重力などを中心に学習・発表</li>
-      <li>学習分野：量子情報理論、自然単位系、リッチテンソルの変分、ブラックホール熱力学</li>
-    </ul>
-  </section>
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="fade-in-up">PrayerEluned</h1>
+          <p class="subtitle fade-in-up">Quantum Physics Researcher & Game Developer</p>
+          <p class="description fade-in-up">
+            量子場理論を専攻する物理系修士学生として先端研究に従事し、同時にUnityを用いた高度なゲーム開発を行っています。
+            理論物理学の深い知識とプログラミングスキルを融合させ、革新的なソリューションを創出しています。
+          </p>
+          <div class="cta-buttons fade-in-up">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fas fa-rocket"></i>
+              プロジェクトを見る
+            </a>
+            <a href="https://github.com/PrayerEluned" class="btn btn-secondary" target="_blank">
+              <i class="fab fa-github"></i>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>ゲーム開発（Unity）</h2>
-    <p>ジャンル：放置系×ステータス成長型2DアクションRPG</p>
-    <ul>
-      <li>開発環境：Unity 6、C#、Windows 11</li>
-      <li>実装済み機能：アーティファクト・武器装備・強化パッチ・敵AI・UI管理・ステータス反映</li>
-      <li>工夫：ScriptableObjectによる拡張性の高い設計、UI入力遮断、タイムスケール制御など</li>
-    </ul>
-  </section>
+    <section id="research" class="research">
+      <div class="container">
+        <h2 class="section-title">Research & Academic Work</h2>
+        <div class="research-grid">
+          <div class="research-card">
+            <h3><i class="fas fa-atom"></i> Quantum Field Theory in Curved Spacetime</h3>
+            <p>de Sitter空間におけるBunch-Davies真空状態の解析とエントロピーの性質について研究。
+            曲がった時空での量子場の振る舞いを数値計算と解析的手法で解明。</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Einstein Field Equations</span>
+              <span class="tech-tag">Quantum Information</span>
+              <span class="tech-tag">Python/NumPy</span>
+              <span class="tech-tag">Mathematica</span>
+            </div>
+          </div>
+          
+          <div class="research-card">
+            <h3><i class="fas fa-black-hole"></i> Black Hole Thermodynamics</h3>
+            <p>シュワルツシルト時空の表面重力計算とホーキング温度の導出。
+            ブラックホール熱力学における情報パラドックスの量子情報理論的解釈。</p>
+            <div class="tech-stack">
+              <span class="tech-tag">General Relativity</span>
+              <span class="tech-tag">Ricci Tensor</span>
+              <span class="tech-tag">Natural Units</span>
+              <span class="tech-tag">Statistical Mechanics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>動画制作</h2>
-    <ul>
-      <li>使用ツール：AviUtl、VoiceVox、OBS、YMM4</li>
-      <li>特徴：BGM・効果音選定、テンポのよい字幕編集、著作権への配慮</li>
-    </ul>
-  </section>
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Development Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Advanced 2D Action RPG</h3>
+              <p class="project-type">Unity 6 / C# Game Development</p>
+            </div>
+            <div class="project-content">
+              <p>放置系×ステータス成長型2DアクションRPGの開発。高度なアーキテクチャパターンとScriptableObjectを活用した拡張性の高い設計を実装。</p>
+              
+              <div class="project-stats">
+                <div class="stat">
+                  <span class="stat-number">15+</span>
+                  <span class="stat-label">Systems</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number">50+</span>
+                  <span class="stat-label">Scripts</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number">100%</span>
+                  <span class="stat-label">C# OOP</span>
+                </div>
+              </div>
 
-  <section>
-    <h2>使用スキル・言語</h2>
-    <ul>
-      <li>プログラミング：<span class="code">C</span>, <span class="code">C#</span>, <span class="code">Python</span></li>
-      <li>ツール：Unity, VSCode, Git, AviUtl, VoiceVox</li>
-      <li>理論：量子場理論、量子情報、一般相対論</li>
-    </ul>
-  </section>
+              <!-- Architecture Diagram -->
+              <div class="architecture-diagram">
+                <h4 class="architecture-title"><i class="fas fa-sitemap"></i> ScriptableObject Architecture</h4>
+                <div class="diagram-container">
+                  <div class="diagram-node">ItemData SO</div>
+                  <span class="diagram-arrow">→</span>
+                  <div class="diagram-node">Inventory System</div>
+                  <span class="diagram-arrow">→</span>
+                  <div class="diagram-node">UI Manager</div>
+                </div>
+                <div class="diagram-description">
+                  アイテムデータをScriptableObjectで管理し、インベントリシステムとUI間での拡張性の高いデータフローを実現
+                </div>
+              </div>
 
-  <section>
-    <h2>GitHub</h2>
-    <p><a href="https://github.com/PrayerEluned" target="_blank">https://github.com/PrayerEluned</a></p>
-  </section>
+              <!-- Code Showcase -->
+              <div class="code-showcase">
+                <div class="code-showcase-header">
+                  <h4><i class="fas fa-code"></i> ItemData ScriptableObject Implementation</h4>
+                  <button class="code-toggle" onclick="toggleCode('itemdata-code')">コードを表示</button>
+                </div>
+                <div class="code-content" id="itemdata-code">
+                  <pre class="code-block"><span class="code-comment">// アイテムデータの基本構造を定義するScriptableObject</span>
+<span class="code-attribute">[CreateAssetMenu(fileName = "New Item", menuName = "RPG/Item Data")]</span>
+<span class="code-keyword">public class</span> <span class="code-type">ItemData</span> : <span class="code-type">ScriptableObject</span>
+{
+    <span class="code-attribute">[Header("Basic Info")]</span>
+    <span class="code-keyword">public string</span> <span class="code-attribute">itemName</span>;
+    <span class="code-attribute">[TextArea(3, 5)]</span>
+    <span class="code-keyword">public string</span> <span class="code-attribute">description</span>;
+    <span class="code-keyword">public</span> <span class="code-type">Sprite</span> <span class="code-attribute">icon</span>;
+    <span class="code-keyword">public</span> <span class="code-type">ItemType</span> <span class="code-attribute">itemType</span>;
+    <span class="code-keyword">public int</span> <span class="code-attribute">maxStackSize</span> = 1;
+
+    <span class="code-attribute">[Header("Stats Modifiers")]</span>
+    <span class="code-keyword">public</span> <span class="code-type">StatModifier</span>[] <span class="code-attribute">statModifiers</span>;
+
+    <span class="code-comment">// アイテム使用時の効果を定義</span>
+    <span class="code-keyword">public virtual void</span> <span class="code-attribute">UseItem</span>(<span class="code-type">PlayerController</span> player)
+    {
+        <span class="code-keyword">foreach</span> (<span class="code-keyword">var</span> modifier <span class="code-keyword">in</span> statModifiers)
+        {
+            player.stats.ApplyModifier(modifier);
+        }
+    }
+}</pre>
+                </div>
+              </div>
+
+              <div class="code-showcase">
+                <div class="code-showcase-header">
+                  <h4><i class="fas fa-cogs"></i> Inventory System with Event Architecture</h4>
+                  <button class="code-toggle" onclick="toggleCode('inventory-code')">コードを表示</button>
+                </div>
+                <div class="code-content" id="inventory-code">
+                  <pre class="code-block"><span class="code-comment">// Observer Patternを使用したインベントリシステム</span>
+<span class="code-keyword">public class</span> <span class="code-type">InventorySystem</span> : <span class="code-type">MonoBehaviour</span>
+{
+    <span class="code-keyword">public static</span> <span class="code-type">System.Action</span>&lt;<span class="code-type">ItemData</span>, <span class="code-keyword">int</span>&gt; <span class="code-attribute">OnItemAdded</span>;
+    <span class="code-keyword">public static</span> <span class="code-type">System.Action</span>&lt;<span class="code-type">ItemData</span>, <span class="code-keyword">int</span>&gt; <span class="code-attribute">OnItemRemoved</span>;
+
+    <span class="code-attribute">[SerializeField]</span> <span class="code-keyword">private</span> <span class="code-type">List</span>&lt;<span class="code-type">InventorySlot</span>&gt; <span class="code-attribute">inventory</span>;
+    <span class="code-attribute">[SerializeField]</span> <span class="code-keyword">private int</span> <span class="code-attribute">maxSlots</span> = 30;
+
+    <span class="code-keyword">public bool</span> <span class="code-attribute">AddItem</span>(<span class="code-type">ItemData</span> itemData, <span class="code-keyword">int</span> quantity = 1)
+    {
+        <span class="code-comment">// スタック可能なアイテムの処理</span>
+        <span class="code-keyword">var</span> existingSlot = inventory.Find(slot => 
+            slot.itemData == itemData && 
+            slot.quantity < itemData.maxStackSize);
+
+        <span class="code-keyword">if</span> (existingSlot != <span class="code-keyword">null</span>)
+        {
+            <span class="code-keyword">int</span> addAmount = <span class="code-type">Mathf</span>.Min(quantity, 
+                itemData.maxStackSize - existingSlot.quantity);
+            existingSlot.quantity += addAmount;
+            <span class="code-attribute">OnItemAdded</span>?.Invoke(itemData, addAmount);
+            <span class="code-keyword">return true</span>;
+        }
+
+        <span class="code-comment">// 新しいスロットに追加</span>
+        <span class="code-keyword">if</span> (inventory.Count < maxSlots)
+        {
+            inventory.Add(<span class="code-keyword">new</span> <span class="code-type">InventorySlot</span>(itemData, quantity));
+            <span class="code-attribute">OnItemAdded</span>?.Invoke(itemData, quantity);
+            <span class="code-keyword">return true</span>;
+        }
+
+        <span class="code-keyword">return false</span>; <span class="code-comment">// インベントリが満杯</span>
+    }
+}</pre>
+                </div>
+              </div>
+
+              <div class="code-showcase">
+                <div class="code-showcase-header">
+                  <h4><i class="fas fa-desktop"></i> UI System Integration</h4>
+                  <button class="code-toggle" onclick="toggleCode('ui-code')">コードを表示</button>
+                </div>
+                <div class="code-content" id="ui-code">
+                  <pre class="code-block"><span class="code-comment">// UIManagerがInventorySystemのイベントを購読</span>
+<span class="code-keyword">public class</span> <span class="code-type">InventoryUIManager</span> : <span class="code-type">MonoBehaviour</span>
+{
+    <span class="code-attribute">[SerializeField]</span> <span class="code-keyword">private</span> <span class="code-type">Transform</span> <span class="code-attribute">slotParent</span>;
+    <span class="code-attribute">[SerializeField]</span> <span class="code-keyword">private</span> <span class="code-type">InventorySlotUI</span> <span class="code-attribute">slotPrefab</span>;
+    
+    <span class="code-keyword">private</span> <span class="code-type">List</span>&lt;<span class="code-type">InventorySlotUI</span>&gt; <span class="code-attribute">slotUIs</span> = <span class="code-keyword">new</span> <span class="code-type">List</span>&lt;<span class="code-type">InventorySlotUI</span>&gt;();
+
+    <span class="code-keyword">private void</span> <span class="code-attribute">OnEnable</span>()
+    {
+        <span class="code-comment">// イベントの購読</span>
+        <span class="code-type">InventorySystem</span>.<span class="code-attribute">OnItemAdded</span> += UpdateUI;
+        <span class="code-type">InventorySystem</span>.<span class="code-attribute">OnItemRemoved</span> += UpdateUI;
+    }
+
+    <span class="code-keyword">private void</span> <span class="code-attribute">OnDisable</span>()
+    {
+        <span class="code-comment">// メモリリーク防止</span>
+        <span class="code-type">InventorySystem</span>.<span class="code-attribute">OnItemAdded</span> -= UpdateUI;
+        <span class="code-type">InventorySystem</span>.<span class="code-attribute">OnItemRemoved</span> -= UpdateUI;
+    }
+
+    <span class="code-keyword">private void</span> <span class="code-attribute">UpdateUI</span>(<span class="code-type">ItemData</span> item, <span class="code-keyword">int</span> quantity)
+    {
+        <span class="code-comment">// UI更新ロジック（データバインディング）</span>
+        <span class="code-keyword">var</span> inventory = <span class="code-type">InventorySystem</span>.Instance.GetInventory();
+        
+        <span class="code-keyword">for</span> (<span class="code-keyword">int</span> i = 0; i < slotUIs.Count; i++)
+        {
+            <span class="code-keyword">if</span> (i < inventory.Count)
+                slotUIs[i].UpdateSlot(inventory[i]);
+            <span class="code-keyword">else</span>
+                slotUIs[i].ClearSlot();
+        }
+    }
+}</pre>
+                </div>
+              </div>
+
+              <div class="tech-stack">
+                <span class="tech-tag">Unity 6</span>
+                <span class="tech-tag">C# Advanced</span>
+                <span class="tech-tag">ScriptableObject</span>
+                <span class="tech-tag">State Machine</span>
+                <span class="tech-tag">Observer Pattern</span>
+                <span class="tech-tag">Singleton</span>
+                <span class="tech-tag">UI System</span>
+                <span class="tech-tag">AI Behavior Tree</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Video Production Pipeline</h3>
+              <p class="project-type">Content Creation / Post-Production</p>
+            </div>
+            <div class="project-content">
+              <p>プロフェッショナルレベルの動画制作ワークフロー。BGM選定から著作権管理まで、技術的品質と法的コンプライアンスを両立。</p>
+              
+              <div class="project-stats">
+                <div class="stat">
+                  <span class="stat-number">4</span>
+                  <span class="stat-label">Tools</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number">60fps</span>
+                  <span class="stat-label">Quality</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-number">100%</span>
+                  <span class="stat-label">Legal</span>
+                </div>
+              </div>
+
+              <div class="tech-stack">
+                <span class="tech-tag">AviUtl</span>
+                <span class="tech-tag">VoiceVox</span>
+                <span class="tech-tag">OBS Studio</span>
+                <span class="tech-tag">YMM4</span>
+                <span class="tech-tag">Audio Engineering</span>
+                <span class="tech-tag">Copyright Law</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Programming Languages</h3>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>C# (Unity/Game Dev)</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Python (Scientific Computing)</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>C (System Programming)</span>
+                <span class="skill-level">Intermediate</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-atom"></i> Physics & Mathematics</h3>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Quantum Field Theory</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>General Relativity</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Quantum Information</span>
+                <span class="skill-level">Intermediate</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Development Tools</h3>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Unity Engine</span>
+                <span class="skill-level">Expert</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Git Version Control</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>VSCode/JetBrains</span>
+                <span class="skill-level">Advanced</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Let's Connect</h2>
+        <p>量子物理学とゲーム開発の架け橋として、新しい可能性を探求しませんか？</p>
+        <div class="contact-links">
+          <a href="https://github.com/PrayerEluned" class="contact-link" target="_blank">
+            <i class="fab fa-github"></i>
+            GitHub
+          </a>
+          <a href="mailto:contact@example.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            Email
+          </a>
+          <a href="https://linkedin.com/in/prayereluned" class="contact-link" target="_blank">
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+          </a>
+          <a href="https://twitter.com/prayereluned" class="contact-link" target="_blank">
+            <i class="fab fa-twitter"></i>
+            Twitter
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(26, 26, 46, 0.98)';
+      } else {
+        header.style.background = 'rgba(26, 26, 46, 0.95)';
+      }
+    });
+
+    // Animate skill bars on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const skillBars = entry.target.querySelectorAll('.skill-progress');
+          skillBars.forEach(bar => {
+            bar.style.width = bar.style.width;
+          });
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.skills-grid').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add fade-in animation to elements
+    const fadeElements = document.querySelectorAll('.research-card, .project-card, .skill-category');
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => {
+      fadeObserver.observe(el);
+    });
+
+    // Code toggle functionality
+    function toggleCode(codeId) {
+      const codeContent = document.getElementById(codeId);
+      const button = document.querySelector(`[onclick="toggleCode('${codeId}')"]`);
+      
+      if (codeContent.classList.contains('active')) {
+        codeContent.classList.remove('active');
+        button.textContent = 'コードを表示';
+      } else {
+        codeContent.classList.add('active');
+        button.textContent = 'コードを隠す';
+      }
+    }
+  </script>
 </body>
 </html>
