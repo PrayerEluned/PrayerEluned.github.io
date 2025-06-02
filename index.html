@@ -8,18 +8,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --primary: #667eea;
-      --secondary: #764ba2;
-      --accent: #f093fb;
-      --dark: #1a1a2e;
-      --darker: #16213e;
-      --light: #eee;
-      --text: #e5e5e5;
-      --text-secondary: #b0b3b8;
-      --green: #00ff88;
-      --orange: #ff6b35;
-      --red: #ff4757;
-      --yellow: #feca57;
+      --primary: #7c9ae0;
+      --secondary: #a8b5d6;
+      --accent: #b4a7d6;
+      --dark: #2a2d3a;
+      --darker: #252834;
+      --light: #f5f5f5;
+      --text: #d4d6db;
+      --text-secondary: #a8adb8;
+      --green: #6fb07f;
+      --orange: #e5a572;
+      --red: #d17a7a;
+      --yellow: #e0c488;
     }
 
     * {
@@ -47,7 +47,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(26, 26, 46, 0.95);
+      background: rgba(42, 45, 58, 0.92);
       backdrop-filter: blur(10px);
       z-index: 1000;
       transition: all 0.3s ease;
@@ -357,7 +357,7 @@
 
     .code-content {
       display: none;
-      background: #0f0f23;
+      background: #1f2127;
       border-radius: 10px;
       padding: 1.5rem;
       overflow-x: auto;
@@ -624,10 +624,11 @@
       <div class="container">
         <div class="hero-content">
           <h1 class="fade-in-up">PrayerEluned</h1>
-          <p class="subtitle fade-in-up">Quantum Physics Researcher & Game Developer</p>
+          <p class="subtitle fade-in-up">物理学修士学生 & 個人ゲーム開発者</p>
           <p class="description fade-in-up">
-            量子場理論を専攻する物理系修士学生として先端研究に従事し、同時にUnityを用いた高度なゲーム開発を行っています。
-            理論物理学の深い知識とプログラミングスキルを融合させ、革新的なソリューションを創出しています。
+            大学では量子情報理論と素粒子論を学習中です。それとは別に個人的な趣味として、
+            Unityを使ったゲーム開発にも取り組んでいます。どちらも興味を持って続けている分野ですが、
+            それぞれ独立した学習・活動として楽しんでいます。
           </p>
           <div class="cta-buttons fade-in-up">
             <a href="#projects" class="btn btn-primary">
@@ -645,29 +646,29 @@
 
     <section id="research" class="research">
       <div class="container">
-        <h2 class="section-title">Research & Academic Work</h2>
+        <h2 class="section-title">研究・学習活動</h2>
         <div class="research-grid">
           <div class="research-card">
-            <h3><i class="fas fa-atom"></i> Quantum Field Theory in Curved Spacetime</h3>
-            <p>de Sitter空間におけるBunch-Davies真空状態の解析とエントロピーの性質について研究。
-            曲がった時空での量子場の振る舞いを数値計算と解析的手法で解明。</p>
+            <h3><i class="fas fa-atom"></i> 量子情報理論</h3>
+            <p>量子もつれ、量子測定、量子アルゴリズムなどの基礎概念を学習中。
+            量子コンピュータの理論的基盤となる数学的構造を理解することを目標としています。</p>
             <div class="tech-stack">
-              <span class="tech-tag">Einstein Field Equations</span>
-              <span class="tech-tag">Quantum Information</span>
-              <span class="tech-tag">Python/NumPy</span>
-              <span class="tech-tag">Mathematica</span>
+              <span class="tech-tag">量子もつれ</span>
+              <span class="tech-tag">量子測定理論</span>
+              <span class="tech-tag">Python/Qiskit</span>
+              <span class="tech-tag">線形代数</span>
             </div>
           </div>
           
           <div class="research-card">
-            <h3><i class="fas fa-black-hole"></i> Black Hole Thermodynamics</h3>
-            <p>シュワルツシルト時空の表面重力計算とホーキング温度の導出。
-            ブラックホール熱力学における情報パラドックスの量子情報理論的解釈。</p>
+            <h3><i class="fas fa-search"></i> 素粒子論</h3>
+            <p>標準模型の基礎から学習を開始。クォークやレプトンの性質、
+            ゲージ理論の概念について理解を深めています。</p>
             <div class="tech-stack">
-              <span class="tech-tag">General Relativity</span>
-              <span class="tech-tag">Ricci Tensor</span>
-              <span class="tech-tag">Natural Units</span>
-              <span class="tech-tag">Statistical Mechanics</span>
+              <span class="tech-tag">標準模型</span>
+              <span class="tech-tag">ゲージ理論</span>
+              <span class="tech-tag">ファインマン図</span>
+              <span class="tech-tag">場の理論</span>
             </div>
           </div>
         </div>
@@ -676,15 +677,16 @@
 
     <section id="projects" class="projects">
       <div class="container">
-        <h2 class="section-title">Development Projects</h2>
+        <h2 class="section-title">個人開発プロジェクト</h2>
         <div class="projects-grid">
           <div class="project-card">
             <div class="project-header">
               <h3>2D Action RPG (開発中)</h3>
-              <p class="project-type">Unity 6 / C# Game Development</p>
+              <p class="project-type">Unity 6 / C# - 個人趣味開発</p>
             </div>
             <div class="project-content">
-              <p>放置系×ステータス成長型2DアクションRPGを現在開発中。ScriptableObjectを活用したデータ駆動型の設計を学習しながら実装しています。</p>
+              <p>個人的な趣味として、放置系×ステータス成長型2DアクションRPGを開発中。
+              プログラミング学習の一環として、ScriptableObjectを使ったデータ管理などの技術を勉強しています。</p>
               
               <div class="project-stats">
                 <div class="stat">
@@ -854,24 +856,25 @@
 
           <div class="project-card">
             <div class="project-header">
-              <h3>Video Production Pipeline</h3>
-              <p class="project-type">Content Creation / Post-Production</p>
+              <h3>動画制作</h3>
+              <p class="project-type">個人趣味 / コンテンツ制作</p>
             </div>
             <div class="project-content">
-              <p>動画制作の基本的なワークフローを学習中。BGM選定から編集まで、著作権に配慮した制作を心がけています。</p>
+              <p>個人的な趣味として動画制作も行っています。編集ソフトの使い方を覚えながら、
+              BGM選定や字幕編集など、基本的な動画制作技術を身につけています。</p>
               
               <div class="project-stats">
                 <div class="stat">
                   <span class="stat-number">4</span>
-                  <span class="stat-label">Tools</span>
+                  <span class="stat-label">使用ツール</span>
                 </div>
                 <div class="stat">
                   <span class="stat-number">学習中</span>
-                  <span class="stat-label">Skills</span>
+                  <span class="stat-label">スキル</span>
                 </div>
                 <div class="stat">
-                  <span class="stat-number">個人</span>
-                  <span class="stat-label">Projects</span>
+                  <span class="stat-number">趣味</span>
+                  <span class="stat-label">目的</span>
                 </div>
               </div>
 
@@ -880,7 +883,7 @@
                 <span class="tech-tag">VoiceVox</span>
                 <span class="tech-tag">OBS Studio</span>
                 <span class="tech-tag">YMM4</span>
-                <span class="tech-tag">Learning</span>
+                <span class="tech-tag">個人制作</span>
               </div>
             </div>
           </div>
@@ -890,10 +893,10 @@
 
     <section id="skills" class="skills">
       <div class="container">
-        <h2 class="section-title">Technical Expertise</h2>
+        <h2 class="section-title">スキル・学習分野</h2>
         <div class="skills-grid">
           <div class="skill-category">
-            <h3><i class="fas fa-code"></i> Programming Languages</h3>
+            <h3><i class="fas fa-code"></i> プログラミング言語</h3>
             <div class="skill-item">
               <div class="skill-name">
                 <span>C# (Unity)</span>
@@ -905,7 +908,7 @@
             </div>
             <div class="skill-item">
               <div class="skill-name">
-                <span>Python (Scientific)</span>
+                <span>Python (科学計算)</span>
                 <span class="skill-level">基本的な使用</span>
               </div>
               <div class="skill-bar">
@@ -914,7 +917,7 @@
             </div>
             <div class="skill-item">
               <div class="skill-name">
-                <span>C (System)</span>
+                <span>C (システム)</span>
                 <span class="skill-level">調べながら</span>
               </div>
               <div class="skill-bar">
@@ -924,10 +927,10 @@
           </div>
 
           <div class="skill-category">
-            <h3><i class="fas fa-atom"></i> Physics & Mathematics</h3>
+            <h3><i class="fas fa-atom"></i> 物理学・数学</h3>
             <div class="skill-item">
               <div class="skill-name">
-                <span>Quantum Field Theory</span>
+                <span>量子情報理論</span>
                 <span class="skill-level">学習中</span>
               </div>
               <div class="skill-bar">
@@ -936,8 +939,8 @@
             </div>
             <div class="skill-item">
               <div class="skill-name">
-                <span>General Relativity</span>
-                <span class="skill-level">基礎理解</span>
+                <span>素粒子論</span>
+                <span class="skill-level">基礎学習</span>
               </div>
               <div class="skill-bar">
                 <div class="skill-progress" style="width: 65%"></div>
@@ -945,7 +948,7 @@
             </div>
             <div class="skill-item">
               <div class="skill-name">
-                <span>Quantum Information</span>
+                <span>場の量子論</span>
                 <span class="skill-level">学習開始</span>
               </div>
               <div class="skill-bar">
@@ -955,10 +958,10 @@
           </div>
 
           <div class="skill-category">
-            <h3><i class="fas fa-tools"></i> Development Tools</h3>
+            <h3><i class="fas fa-tools"></i> 開発ツール</h3>
             <div class="skill-item">
               <div class="skill-name">
-                <span>Unity Engine</span>
+                <span>Unity エンジン</span>
                 <span class="skill-level">学習中</span>
               </div>
               <div class="skill-bar">
@@ -967,7 +970,7 @@
             </div>
             <div class="skill-item">
               <div class="skill-name">
-                <span>Git Version Control</span>
+                <span>Git バージョン管理</span>
                 <span class="skill-level">基本操作</span>
               </div>
               <div class="skill-bar">
@@ -990,24 +993,16 @@
 
     <section id="contact" class="contact">
       <div class="container">
-        <h2 class="section-title">Let's Connect</h2>
-        <p>量子物理学とゲーム開発の架け橋として、新しい可能性を探求しませんか？</p>
+        <h2 class="section-title">お問い合わせ</h2>
+        <p>物理学の学習とゲーム開発、どちらの分野についてもお気軽にご連絡ください。</p>
         <div class="contact-links">
           <a href="https://github.com/PrayerEluned" class="contact-link" target="_blank">
             <i class="fab fa-github"></i>
             GitHub
           </a>
-          <a href="mailto:contact@example.com" class="contact-link">
+          <a href="mailto:eluned.72.steam@gmail.com" class="contact-link">
             <i class="fas fa-envelope"></i>
             Email
-          </a>
-          <a href="https://linkedin.com/in/prayereluned" class="contact-link" target="_blank">
-            <i class="fab fa-linkedin"></i>
-            LinkedIn
-          </a>
-          <a href="https://twitter.com/prayereluned" class="contact-link" target="_blank">
-            <i class="fab fa-twitter"></i>
-            Twitter
           </a>
         </div>
       </div>
@@ -1033,9 +1028,9 @@
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       if (window.scrollY > 100) {
-        header.style.background = 'rgba(26, 26, 46, 0.98)';
+        header.style.background = 'rgba(42, 45, 58, 0.95)';
       } else {
-        header.style.background = 'rgba(26, 26, 46, 0.95)';
+        header.style.background = 'rgba(42, 45, 58, 0.92)';
       }
     });
 
