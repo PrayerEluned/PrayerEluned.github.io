@@ -300,7 +300,7 @@
     /* Projects Section */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: 1fr;
       gap: 3rem;
       margin-top: 3rem;
     }
@@ -475,8 +475,19 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: nowrap;
+      gap: 2rem;
+    }
+    .diagram-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
       gap: 2rem;
+      width: 100%;
+    }
+    .diagram-row + .diagram-row {
+      margin-top: 0.75rem;
     }
 
     .diagram-node {
@@ -491,10 +502,26 @@
     }
 
     .diagram-arrow {
-      color: var(--primary);
-      font-size: 1.5rem;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
       margin: 0 0.5rem;
+      position: relative;
+      vertical-align: middle;
     }
+    .diagram-arrow::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      filter: drop-shadow(0 0 6px rgba(124,154,224,0.55));
+      opacity: 0.95;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="92" height="36" viewBox="0 0 92 36"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="%23a8b5d6"/><stop offset="100%" stop-color="%237c9ae0"/></linearGradient></defs><path d="M4 18 H74" stroke="url(%23g)" stroke-width="3" stroke-linecap="round" opacity="0.9"/><path d="M74 9 L88 18 L74 27" fill="none" stroke="url(%23g)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    }
+    .diagram-arrow.down { transform: rotate(90deg); }
+    .diagram-arrow.right { transform: none; }
 
     .diagram-description {
       margin-top: 1rem;
@@ -615,11 +642,8 @@
       }
       
       .diagram-container {
-        flex-direction: column;
-      }
-      
-      .diagram-arrow {
-        transform: rotate(90deg);
+        flex-direction: row;
+        flex-wrap: wrap;
       }
       
       .code-showcase {
@@ -787,129 +811,32 @@
                 </div>
               </div>
 
+              <div class="cta-buttons">
+                <a href="https://prayereluned.github.io/Parry-and-Attack-Demo-webGL/" class="btn btn-primary" target="_blank" rel="noopener">
+                  <i class="fas fa-play"></i>
+                  WebGLデモを開く
+                </a>
+                <a href="https://github.com/PrayerEluned/Parry-and-Attack-Demo" class="btn btn-secondary" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i>
+                  スクリプト（GitHub）
+                </a>
+              </div>
+
               <!-- Architecture Diagram -->
               <div class="architecture-diagram">
                 <h4 class="architecture-title"><i class="fas fa-sitemap"></i> アイテムシステム設計アーキテクチャ</h4>
                 <div class="diagram-container">
                   <div class="diagram-node">IPlayerItem<br><small>インターフェース</small></div>
-                  <span class="diagram-arrow">↓</span>
+                  <span class="diagram-arrow right"></span>
                   <div class="diagram-node">ConsumableItem<br><small>ScriptableObject</small></div>
-                  <span class="diagram-arrow">→</span>
+                  <span class="diagram-arrow right"></span>
                   <div class="diagram-node">Inventory System<br><small>アイテム管理</small></div>
-                  <span class="diagram-arrow">→</span>
+                  <span class="diagram-arrow right"></span>
                   <div class="diagram-node">UI Manager<br><small>表示制御</small></div>
                 </div>
                 <div class="diagram-description">
                   IPlayerItemインターフェースによる型安全な設計で、ConsumableItemなどの具体的なアイテムを
                   ScriptableObjectとして実装。インベントリシステムとUI間での拡張性の高いデータフローを実現
-                </div>
-              </div>
-
-              <!-- Code Showcase -->
-              <div class="code-showcase">
-                <div class="code-showcase-header">
-                  <h4><i class="fas fa-code"></i> IPlayerItem インターフェース設計</h4>
-                  <button class="code-toggle" onclick="toggleCode('interface-code')">コードを表示</button>
-                </div>
-                <div class="code-content" id="interface-code">
-                  <pre class="code-block"><span class="code-comment">// アイテムの共通インターフェースを定義</span>
-<span class="code-keyword">namespace</span> <span class="code-type">Game.Items</span>
-{
-    <span class="code-keyword">public interface</span> <span class="code-type">IPlayerItem</span>
-    {
-        <span class="code-keyword">string</span> <span class="code-attribute">ItemID</span> { <span class="code-keyword">get</span>; }
-        <span class="code-keyword">string</span> <span class="code-attribute">ItemName</span> { <span class="code-keyword">get</span>; }
-        <span class="code-type">Sprite</span> <span class="code-attribute">Icon</span> { <span class="code-keyword">get</span>; }
-        <span class="code-type">ItemType</span> <span class="code-attribute">Type</span> { <span class="code-keyword">get</span>; }
-        <span class="code-keyword">string</span> <span class="code-attribute">Description</span> { <span class="code-keyword">get</span>; }
-    }
-
-    <span class="code-keyword">public enum</span> <span class="code-type">ItemType</span>
-    {
-        <span class="code-attribute">Consumable</span>,
-        <span class="code-attribute">Equipment</span>,
-        <span class="code-attribute">Material</span>,
-        <span class="code-attribute">Quest</span>
-    }
-}</pre>
-                </div>
-              </div>
-
-              <div class="code-showcase">
-                <div class="code-showcase-header">
-                  <h4><i class="fas fa-flask"></i> ConsumableItem ScriptableObject実装</h4>
-                  <button class="code-toggle" onclick="toggleCode('consumable-code')">コードを表示</button>
-                </div>
-                <div class="code-content" id="consumable-code">
-                  <pre class="code-block"><span class="code-keyword">using</span> <span class="code-type">UnityEngine</span>;
-<span class="code-keyword">using</span> <span class="code-type">Game.Items</span>;
-
-<span class="code-comment">// 消費アイテム用ScriptableObject</span>
-<span class="code-attribute">[CreateAssetMenu(fileName = "NewConsumable", menuName = "Game/Consumable")]</span>
-<span class="code-keyword">public class</span> <span class="code-type">ConsumableItem</span> : <span class="code-type">ScriptableObject</span>, <span class="code-type">IPlayerItem</span>
-{
-    <span class="code-attribute">[Header("基本情報")]</span>
-    <span class="code-keyword">public string</span> <span class="code-attribute">itemID</span>;
-    <span class="code-keyword">public string</span> <span class="code-attribute">itemName</span>;
-    <span class="code-keyword">public</span> <span class="code-type">Sprite</span> <span class="code-attribute">icon</span>;
-    <span class="code-attribute">[TextArea]</span> <span class="code-keyword">public string</span> <span class="code-attribute">description</span>;
-    <span class="code-keyword">public int</span> <span class="code-attribute">maxStack</span> = 500; <span class="code-comment">// スタック上限</span>
-
-    <span class="code-comment">// IPlayerItem インターフェース実装</span>
-    <span class="code-keyword">public string</span> <span class="code-attribute">ItemID</span> => itemID;
-    <span class="code-keyword">public string</span> <span class="code-attribute">ItemName</span> => itemName;
-    <span class="code-keyword">public</span> <span class="code-type">Sprite</span> <span class="code-attribute">Icon</span> => icon;
-    <span class="code-keyword">public</span> <span class="code-type">ItemType</span> <span class="code-attribute">Type</span> => <span class="code-type">ItemType</span>.Consumable;
-    <span class="code-keyword">public string</span> <span class="code-attribute">Description</span> => description;
-}</pre>
-                </div>
-              </div>
-
-              <div class="code-showcase">
-                <div class="code-showcase-header">
-                  <h4><i class="fas fa-cogs"></i> Inventory System with Generic Design</h4>
-                  <button class="code-toggle" onclick="toggleCode('inventory-code')">コードを表示</button>
-                </div>
-                <div class="code-content" id="inventory-code">
-                  <pre class="code-block"><span class="code-comment">// IPlayerItemインターフェースを使用したインベントリシステム</span>
-<span class="code-keyword">public class</span> <span class="code-type">InventorySystem</span> : <span class="code-type">MonoBehaviour</span>
-{
-    <span class="code-keyword">public static</span> <span class="code-type">System.Action</span>&lt;<span class="code-type">IPlayerItem</span>, <span class="code-keyword">int</span>&gt; <span class="code-attribute">OnItemAdded</span>;
-    <span class="code-keyword">public static</span> <span class="code-type">System.Action</span>&lt;<span class="code-type">IPlayerItem</span>, <span class="code-keyword">int</span>&gt; <span class="code-attribute">OnItemRemoved</span>;
-
-    <span class="code-attribute">[SerializeField]</span> <span class="code-keyword">private</span> <span class="code-type">List</span>&lt;<span class="code-type">InventorySlot</span>&gt; <span class="code-attribute">slots</span>;
-    <span class="code-attribute">[SerializeField]</span> <span class="code-keyword">private int</span> <span class="code-attribute">maxSlots</span> = 30;
-
-    <span class="code-keyword">public bool</span> <span class="code-attribute">AddItem</span>(<span class="code-type">IPlayerItem</span> item, <span class="code-keyword">int</span> quantity = 1)
-    {
-        <span class="code-comment">// ConsumableItemかどうかで処理を分岐</span>
-        <span class="code-keyword">if</span> (item <span class="code-keyword">is</span> <span class="code-type">ConsumableItem</span> consumable)
-        {
-            <span class="code-comment">// スタック可能なアイテムの処理</span>
-            <span class="code-keyword">var</span> existingSlot = slots.Find(slot => 
-                slot.item.ItemID == item.ItemID && 
-                slot.quantity < consumable.maxStack);
-
-            <span class="code-keyword">if</span> (existingSlot != <span class="code-keyword">null</span>)
-            {
-                <span class="code-keyword">int</span> addAmount = <span class="code-type">Mathf</span>.Min(quantity, 
-                    consumable.maxStack - existingSlot.quantity);
-                existingSlot.quantity += addAmount;
-                <span class="code-attribute">OnItemAdded</span>?.Invoke(item, addAmount);
-                <span class="code-keyword">return true</span>;
-            }
-        }
-
-        <span class="code-comment">// 新スロットに追加</span>
-        <span class="code-keyword">if</span> (slots.Count < maxSlots)
-        {
-            slots.Add(<span class="code-keyword">new</span> <span class="code-type">InventorySlot</span>(item, quantity));
-            <span class="code-attribute">OnItemAdded</span>?.Invoke(item, quantity);
-            <span class="code-keyword">return true</span>;
-        }
-        <span class="code-keyword">return false</span>;
-    }
-}</pre>
                 </div>
               </div>
 
